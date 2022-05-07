@@ -4,7 +4,8 @@ public:
             int currH= 0;
         for(int i =0;i<arr.size();i++){
             // (p + m - 1) / m equal to ceil(p / m) (just personal behavior)
-            currH += (arr[i] + speed - 1) / speed;
+            // currH += (arr[i] + speed - 1) / speed;
+            currH += ceil(arr[i]*1.0 / speed);
         }
         return currH <= maxH;
     }
