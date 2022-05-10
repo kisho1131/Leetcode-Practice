@@ -1,40 +1,32 @@
 class Solution {
 public:
-    vector<int> findAnagrams(string s, string ana) {
-          unordered_map<char, int> m;
-          for (auto it : ana)
-            m[it]++;
-
-          int k = ana.length();
-          int count = m.size();
-
-          int i = 0, j = 0;
+    vector<int> findAnagrams(string s, string p) {
+        int i =0, j =0;
         vector<int>res;
-          while (j < s.length()) {
-
-            if (m.find(s[j]) != m.end()) {
-              m[s[j]]--;
-              if (m[s[j]] == 0)
-                count--;
+        int k = p.length();
+        unordered_map<int, int>mp;
+        for(auto ele : p)
+            mp[ele]++;
+        int count = mp.size();
+        while(j < s.length()){
+            if(mp.find(s[j])!=mp.end()){
+                mp[s[j]]--;
+                if(mp[s[j]] == 0) count--;
             }
-            if ((j - i + 1) < k)
-              j++;
-
-            else if ((j - i + 1) == k) {
-
-              if (count == 0)
-                res.push_back(i);
-
-              if (m.find(s[i]) != m.end()) {
-                m[s[i]]++;
-                if (m[s[i]] == 1)
-                  count++;
-              }
-              i++;
-              j++;
-        }     
-     }
-        return res;
+            if((j - i + 1) < k)
+                j++;
+            else if ( (j-i+1) == k){
+                if(count == 0) res.push_back(i);
+                
+                if(mp.find(s[i]) != mp.end()){
+                    mp[s[i]]++;
+                    if(mp[s[i]] == 1) count++;
+                }
+                i++;
+                j++;
+            }
+        }
         
+        return res;
     }
 };
