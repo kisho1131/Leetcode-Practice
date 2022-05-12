@@ -1,18 +1,18 @@
 class Solution {
 public:
     int mySqrt(int x) {
-        if (x == 0)
-        return 0;
-    int left = 1, right = INT_MAX;
-    while (true) {
-        int mid = left + (right - left)/2;
-        if (mid > x/mid) {
-            right = mid - 1;
-        } else {
-            if (mid + 1 > x/(mid + 1))
-                return mid;
-            left = mid + 1;
+        int st = 1;
+        int ed = x;
+        int ans = 0;
+        while(st <= ed){
+            int mid = st + (ed-st)/2;
+            if(mid  <= x/mid){
+                ans = mid;
+                st = mid +1;
+            }
+            else
+                ed = mid -1;
         }
-    }
+        return ans;
     }
 };
