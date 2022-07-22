@@ -1,23 +1,23 @@
 class Solution {
 public:
     vector<vector<int>>subset;
-    void generateSubset(vector<int>&arr, int n, vector<int>&nums){
+    void helper(vector<int>&arr, int n, vector<int>&nums){
         if(n == nums.size()){
             subset.push_back(arr);
             return;
         }
-        // Do not Include
-        generateSubset(arr, n+1,nums);
         
-        // Include the Current Element
+        helper(arr, n+1, nums);
+        
         arr.push_back(nums[n]);
-        generateSubset(arr, n+1, nums);
+        helper(arr, n+1, nums);
         arr.pop_back();
+        
     }
     vector<vector<int>> subsets(vector<int>& nums) {
         vector<int>arr;
-        generateSubset(arr, 0, nums);
+        int n = 0;
+        helper(arr,n,nums);
         return subset;
-        
     }
 };
