@@ -1,6 +1,25 @@
 class Solution {
 public:
     vector<vector<int>>res;
+    void helper(vector<int>&nums, int st){
+        if(st == nums.size()){
+            res.push_back(nums);
+            return;
+        }
+        
+        for(int i =st;i<nums.size();i++){
+            swap(nums[i] , nums[st]);
+            helper(nums, st+1);
+            swap(nums[i] , nums[st]);
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        int st =0;
+        helper(nums, st);
+        return res;
+    }
+};
+/*
     void helper(vector<int>&nums, vector<int>&ds, int freq[]){
         if(ds.size() == nums.size()){
             res.push_back(ds);
@@ -24,8 +43,6 @@ public:
         helper(nums, ds, freq);
         return res;
     }
-};
-/*
     vector<vector<int>>res;
     void permute_rec(int st,int ed, vector<int>&nums){
         if(st >= ed){
@@ -38,6 +55,8 @@ public:
             swap(nums[st], nums[i]);
         }
     }
+    
+    /* Approch - 2  //
     vector<vector<int>> permute(vector<int>& nums) {
        // int itr = 0;
         vector<int>arr;
